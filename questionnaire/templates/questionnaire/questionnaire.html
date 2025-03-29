@@ -10,7 +10,18 @@
 </head>
 <body>
 
+
+
     <form method="post">
+        <center>
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% endif %}
+            </center>
         {% csrf_token %}
 
         <h2>Participant Information</h2>
