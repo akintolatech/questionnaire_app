@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import questionnaire_view
+from .views import questionnaire_view, app_landing, success
 
 urlpatterns = [
-    path('', questionnaire_view, name='landing'),
+    path('', app_landing, name='landing'),
     path('questionnaire', questionnaire_view, name='questionnaire'),
+    path('success/', success, name='success'),
 ]

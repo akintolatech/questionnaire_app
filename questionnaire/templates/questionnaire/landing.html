@@ -1,16 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AFCS Questionnaire App</title>
+    <link type="text/css" href="{% static 'styles/style.css' %}" rel="stylesheet" />
 </head>
 <body>
     <main>
         <div class="landing_container">
+
             <div class="landing_img">
-                <img src="" />
+                <img src="{% static 'img/afcs.png' %}" />
             </div>
+            <h3>Student Feedback App</h3>
+            <p>A Questtionnaire app to get responses of students about teachers</p>
+            <a href="{% url 'questionnaire' %}">
+                <button type="submit">Start Now</button>
+            </a>
+        
+            
         </div>
     </main>
 </body>

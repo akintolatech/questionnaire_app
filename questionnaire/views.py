@@ -10,6 +10,13 @@ def app_landing(request):
     )
 
 
+def success(request):
+    return render(
+        request,
+        "questionnaire/success.html",
+    )
+
+
 def questionnaire_view(request):
     teachers = Teacher.objects.all()
     questions = Question.objects.all()
