@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" href="{% static 'styles/table.css' %}" rel="stylesheet" />
+    <link type="text/css" href="{% static 'styles/style.css' %}" rel="stylesheet" />
+    <title>Questionnaire</title>
+</head>
+<body>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <h2>Participant Information</h2>
+        <label for="participant_name">Name:</label>
+        <input type="text" id="participant_name" name="participant_name" required>
+
+        <label for="participant_phone">Phone Number:</label>
+        <input type="text" id="participant_phone" name="participant_phone" required>
+
+        <hr>
+
+        {% for category in categories %}
+            <h3>{{ category.category_text }}</h3>
+
+            {% for question in questions %}
+                {% if question.question_category == category %}
+                    <p>{{ question.text }}</p>
+                    {% for teacher in teachers %}
+                        <p><strong>{{ teacher.name }}</strong></p>
+                        <label>
+                            <input type="radio" name="response_{{ teacher.id }}_{{ question.id }}" value="SA"> Strongly Agree
+                        </label>
+                        <label>
+                            <input type="radio" name="response_{{ teacher.id }}_{{ question.id }}" value="A"> Agree
+                        </label>
+                        <label>
+                            <input type="radio" name="response_{{ teacher.id }}_{{ question.id }}" value="D"> Disagree
+                        </label>
+                        <label>
+                            <input type="radio" name="response_{{ teacher.id }}_{{ question.id }}" value="SD"> Strongly Disagree
+                        </label>
+                        <br><br>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>
